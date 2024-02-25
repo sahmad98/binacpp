@@ -1,0 +1,15 @@
+set(LIBBINACPP_DIR "${CMAKE_SOURCE_DIR}/lib/libbinacpp")
+message("BINACPP Dir ${LIBBINACPP_DIR}")
+include_directories(${LIBBINACPP_DIR}/include)
+link_directories(${LIBBINACPP_DIR}/lib)
+
+file(GLOB EXAMPLES "*.cpp")
+
+set(ITER 0)
+foreach(EXAMPLE ${EXAMPLES})
+  get_filename_component(TARGET_NAME ${EXAMPLE} NAME)
+  add_executable(${TARGET_NAME} ${EXAMPLE})
+  add_dependencies(${TARGET_NAME} binacpp)
+  target_link_libraries(${TARGET_NAME} curl jsoncpp crypto websockets binacpp)
+  math(EXPR ITER "${ITER} + 1")
+endforeach()
