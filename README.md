@@ -33,24 +33,22 @@ and -L<lib path> and -l<libname> for linker to link against shared libraries.
 	libbinacpp_dir=../lib/libbinacpp
 	libbinacpp_include=${libbinacpp_dir}/include
 	libbinacpp_lib=${libbinacpp_dir}/lib
+#### Build Instructions
+To build binacpp shared library
+
+ 	mkdir build
+ 	cmake ..
+  	make -j 4
+   	cd src
+    make install
 
 
+To build examples
+	
+ 	cd build/examples
+ 	make -j 4
 
-.
-Then compile like this:
-
-
-	g++ -I$(libcurl_include) -I$(jsoncpp_include) -I$(libwebsockets_include) -I$(libbinacpp_include) \
-	example.cpp \
-	-L$(libcurl_lib) \
-	-L$(libwebsockets_lib) \
-	-L$(libbinacpp_lib) \
-	-lcurl -lcrypto -lwebsockets -lbinacpp -o example
-
-
-
-
-
+  
 And export LD\_LIBRARY\_PATH and run like this:
 
 	libcurl_dir=../lib/libcurl-7.56.0
