@@ -13,7 +13,7 @@
 using namespace std;
 
 map < string, map <double,double> >  depthCache;
-int lastUpdateId;
+unsigned long lastUpdateId;
 
 //------------------------------
 void print_depthCache() {
@@ -45,9 +45,9 @@ void print_depthCache() {
 int ws_depth_onData( Json::Value &json_result ) {
 	
 	int i;
-
-	int new_updateId  = json_result["u"].asInt();
 	
+	unsigned long new_updateId  = json_result["u"].asUInt64();
+
 	if ( new_updateId > lastUpdateId ) {
 	
 		for ( i = 0 ; i < json_result["b"].size() ; i++ ) {
@@ -95,8 +95,8 @@ int main() {
 	BinaCPP::get_depth( symbol.c_str(), 20, result ) ;
 
 	// Initialize the lastUpdateId
-	lastUpdateId = result["lastUpdateId"].asInt();
- 		
+	lastUpdateId = result["lastUpdateId"].asUInt64();
+
 	for ( int i = 0 ; i < result["asks"].size(); i++ ) {
 
 		double price = atof( result["asks"][i][0].asString().c_str() );
