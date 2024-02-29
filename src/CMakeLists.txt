@@ -2,11 +2,12 @@ set(BINACPP_INSTALL_DIR ${CMAKE_SOURCE_DIR}/lib/libbinacpp)
 set(CMAKE_INSTALL_DIR ${BINACPP_INSTALL_DIR}/lib)
 set(CMAKE_INSTALL_INCLUDEDIR ${BINACPP_INSTALL_DIR}/include)
 
+include_directories(${jsoncpp_SOURCE_DIR}/include)
+
 file(GLOB SRCS *.cpp)
 add_library(binacpp SHARED ${SRCS})
-target_link_libraries(binacpp curl crypto websockets)
-
-add_dependencies(binacpp jsoncpp)
+add_dependencies(binacpp jsoncpp_lib_static)
+target_link_libraries(binacpp jsoncpp_lib_static curl crypto websockets)
 
 file(GLOB HEADERS *.h)
 set_target_properties(binacpp PROPERTIES PUBLIC_HEADER "${HEADERS}")
