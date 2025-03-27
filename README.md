@@ -1,14 +1,13 @@
 
-# Binance C++ API
+# Binance C++ API - Cleaner Version
 
 #### Installation
     git clone https://github.com/tensaix2j/binacpp    
 
 #### Dependencies
-	
-	jsoncpp-1.8.3
-	libcurl-7.56.0
-	libwebsockets-2.4.0
+- jsoncpp
+- libcurl
+- libwebsockets
 
 #### Build Instructions
 To build binacpp shared library
@@ -17,7 +16,7 @@ To build binacpp shared library
  	cmake -DBUILD_SHARED_LIBS=ON ..
   	make -j 4
    	cd src
-    make install
+	make install
 
 To build examples
 	
