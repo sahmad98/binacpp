@@ -10,69 +10,28 @@
 	libcurl-7.56.0
 	libwebsockets-2.4.0
 
-
-
-Depended shared libraries and their headers are included in the repository's lib directory 
-
-use -I<include path> to include header paths for compiler to look for headers 
-
-and -L<lib path> and -l<libname> for linker to link against shared libraries.
-
-	libcurl_dir=../lib/libcurl-7.56.0
-	libcurl_include=${libcurl_dir}/include
-	libcurl_lib=${libcurl_dir}/lib
-	
-	jsoncpp_dir=../lib/jsoncpp-1.8.3
-	jsoncpp_include=${jsoncpp_dir}/include
-	jsoncpp_src=${jsoncpp_dir}/src
-	
-	libwebsockets_dir=../lib/libwebsockets-2.4.0
-	libwebsockets_include=${libwebsockets_dir}/include
-	libwebsockets_lib=${libwebsockets_dir}/lib
-	
-	libbinacpp_dir=../lib/libbinacpp
-	libbinacpp_include=${libbinacpp_dir}/include
-	libbinacpp_lib=${libbinacpp_dir}/lib
 #### Build Instructions
 To build binacpp shared library
 
  	mkdir build
- 	cmake ..
+ 	cmake -DBUILD_SHARED_LIBS=ON ..
   	make -j 4
    	cd src
     make install
-
 
 To build examples
 	
  	cd build/examples
  	make -j 4
-
   
-And export LD\_LIBRARY\_PATH and run like this:
-
-	libcurl_dir=../lib/libcurl-7.56.0
-	libcurl_lib=${libcurl_dir}/lib
-
-	libwebsockets_dir=../lib/libwebsockets-2.4.0
-	libwebsockets_lib=${libwebsockets_dir}/lib
-
-	libbinacpp_dir=../lib/libbinacpp
-	libbinacpp_lib=${libbinacpp_dir}/lib
+And export enviornment variables and run like this:
 
 	export SSL_CERT_FILE=`pwd`/cacert.pem
-	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$libcurl_lib:$libwebsockets_lib:$libbinacpp_lib
-
 	./example 
-
-
-
-
 
 You can refer to the following Makefile to get a better picture...
 
 	https://github.com/tensaix2j/binacpp/blob/master/example/Makefile
-
 
 #### To Build Example
 	
